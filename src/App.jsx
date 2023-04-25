@@ -1,20 +1,28 @@
+import React from 'react'
 import { useReducer } from 'react'
 import { createContext } from 'react'
-import './App.css'
 import Form from './components/Form'
-import { initialState, todoReducer,  } from './utils/Func'
+import Todos from './components/Todos'
+import { initialState, reducer } from './utils/Func'
 
-export const MyContex = createContext()
+export const MyContext = createContext()
 
-
-function App() {
-  const [ state, dispatch ] = useReducer(todoReducer, initialState)
+const App = () => {
+  const [ state, dispatch ] = useReducer(reducer, initialState)
   return (
-    <MyContex.Provider value={{ state, dispatch }}>
-      <>
-        <Form />
-      </>
-    </MyContex.Provider>
+    <MyContext.Provider value={{ state, dispatch }}>
+      <div className='flex justify-center items-center w-full min-h-[100vh] bg-indigo-500'>
+        <div className='w-[450px] bg-white rounded-md p-4'>
+          <div className='"w-full flex justify-center items-center flex-col gap-6'>
+            <h1>Todo List</h1>
+            <Form />
+          </div>
+          <Todos />
+        </div>
+        
+      </div>
+      
+    </MyContext.Provider>
   )
 }
 
