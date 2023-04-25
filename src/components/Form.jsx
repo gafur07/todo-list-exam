@@ -10,6 +10,7 @@ const Form = () => {
         e.preventDefault()
         const newTask = { id: Date.now(), text: e.target.task.value }
         dispatch({ type: "ADD_TODO", payload: newTask}, toast.success("Success"))
+        e.target.reset()
     }
 
   return (
